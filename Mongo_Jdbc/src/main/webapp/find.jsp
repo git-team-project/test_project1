@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here2</title>
+<title>Insert title here3</title>
 </head>
 <%
 	//MongoDatabase db = ConnectMongoDB.getDatabase();
