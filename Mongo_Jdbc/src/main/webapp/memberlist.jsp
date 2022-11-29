@@ -15,7 +15,7 @@ table {
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here12</title>
 </head>
 <%
 	//MongoDatabase db = ConnectMongoDB.getDatabase();
