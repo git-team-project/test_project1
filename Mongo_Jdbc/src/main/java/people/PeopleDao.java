@@ -30,15 +30,20 @@ public class PeopleDao {
 		
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("people");
+			MongoCollection<Document> collection = database.getCollection("member");
 			
 			collection.find().sort(ascending("_id")).into(findList);
 			
 			for (int i = 0; i < findList.size(); i++) {
 				People dto = new People();
 				dto.setId((ObjectId) findList.get(i).get("_id"));
+				dto.setMemberId(findList.get(i).getString("id"));
+				dto.setPw(findList.get(i).getString("pw"));
+				dto.setAddress(findList.get(i).getString("address"));
+				dto.setPno(findList.get(i).getString("pno"));
+				dto.setEmail(findList.get(i).getString("email"));
+				dto.setDept(findList.get(i).getString("dept"));
 				dto.setName(findList.get(i).getString("name"));
-				dto.setAge(findList.get(i).getInteger("age"));
 				dtoList.add(dto);
 			}
 		} 
@@ -49,7 +54,7 @@ public class PeopleDao {
 	public long delete(String id) {
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("people");
+			MongoCollection<Document> collection = database.getCollection("member");
 			
 			Bson query = eq("_id", new ObjectId(id));
 	        DeleteResult result = collection.deleteOne(query);
@@ -61,7 +66,7 @@ public class PeopleDao {
 	public People findOneById(String id) {
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("people");
+			MongoCollection<Document> collection = database.getCollection("member");
 		
 			Bson query = eq("_id", new ObjectId(id));
 			Document doc = collection.find(query).sort(Sorts.ascending("_id")).first();
@@ -78,7 +83,7 @@ public class PeopleDao {
 	public long update(People dto) {
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("people");
+			MongoCollection<Document> collection = database.getCollection("member");
 			
 			Document query = new Document().append("_id", dto.getId());
 	        Bson updates = Updates.combine(
@@ -94,7 +99,7 @@ public class PeopleDao {
 	public boolean insert(People dto) {
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("people");
+			MongoCollection<Document> collection = database.getCollection("member");
 			
 			Document doc = new Document();
 			doc.append("_id", new ObjectId());
