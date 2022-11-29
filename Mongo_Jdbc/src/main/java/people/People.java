@@ -8,10 +8,21 @@ public class People {
 	private String pw;
 	private String address;
 	private String name;
+<<<<<<< HEAD
 	private String dept;
 	private String pno;
 	private String email;
 	
+=======
+	private int age;
+	private String memberId;
+	private String pw;
+	private String address;
+	private String pno;
+	private String email;
+	private String dept;
+
+>>>>>>> main
 	public People() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -77,7 +88,61 @@ public class People {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
+	// member_id
+	public String getMemberId() {
+		return memberId;
+	}
+	
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	
+	// pw
+	public String getPw() {
+		return pw;
+	}
+	
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+	
+	// address
+	public String getAdress() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	// pno
+	public String getPno() {
+		return pno;
+	}
+	
+	public void setPno(String pno) {
+		this.pno = pno;
+	}
+	
+	// email
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	// dpt
+	public String getDept() {
+		return dept;
+	}
+	
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+	
 	@Override
 	public String toString() {
 		return "People [id=" + id + ", memberId=" + memberId + ", pw=" + pw + ", address=" + address + ", name=" + name

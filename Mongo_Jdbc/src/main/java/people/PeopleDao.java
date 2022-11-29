@@ -24,10 +24,40 @@ import util.MongoInfo;
 
 public class PeopleDao {
 	
+<<<<<<< HEAD
+=======
+	public List<People> findAll() {
+		List<Document> findList = new ArrayList<>();
+		List<People> dtoList = new ArrayList<>();
+		
+		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
+			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
+			MongoCollection<Document> collection = database.getCollection("member");
+			
+			collection.find().sort(ascending("_id")).into(findList);
+			
+			for (int i = 0; i < findList.size(); i++) {
+				People dto = new People();
+				dto.setId((ObjectId) findList.get(i).get("_id"));
+				dto.setMemberId(findList.get(i).getString("id"));
+				dto.setPw(findList.get(i).getString("pw"));
+				dto.setAddress(findList.get(i).getString("address"));
+				dto.setPno(findList.get(i).getString("pno"));
+				dto.setEmail(findList.get(i).getString("email"));
+				dto.setDept(findList.get(i).getString("dept"));
+				dto.setName(findList.get(i).getString("name"));
+				dtoList.add(dto);
+			}
+		} 
+		
+		return dtoList;
+	}
+	
+>>>>>>> main
 	public long delete(String id) {
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("people");
+			MongoCollection<Document> collection = database.getCollection("member");
 			
 			Bson query = eq("_id", new ObjectId(id));
 	        DeleteResult result = collection.deleteOne(query);
@@ -77,4 +107,22 @@ public class PeopleDao {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	public boolean insert(People dto) {
+		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
+			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
+			MongoCollection<Document> collection = database.getCollection("member");
+			
+			Document doc = new Document();
+			doc.append("_id", new ObjectId());
+			doc.append("name", dto.getName());
+			doc.append("age", dto.getAge());
+		
+			InsertOneResult result = collection.insertOne(doc);
+			
+			return result.wasAcknowledged();
+		}
+	}
+>>>>>>> main
 }
