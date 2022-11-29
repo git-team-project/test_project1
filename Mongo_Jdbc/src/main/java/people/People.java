@@ -8,21 +8,10 @@ public class People {
 	private String pw;
 	private String address;
 	private String name;
-<<<<<<< HEAD
 	private String dept;
 	private String pno;
 	private String email;
 	
-=======
-	private int age;
-	private String memberId;
-	private String pw;
-	private String address;
-	private String pno;
-	private String email;
-	private String dept;
-
->>>>>>> main
 	public People() {
 		super();
 		// TODO Auto-generated constructor stub
