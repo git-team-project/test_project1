@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here12</title>
 </head>
 <%
 	//MongoDatabase db = ConnectMongoDB.getDatabase();
@@ -50,6 +50,7 @@
 		for(int i=0; i<list.size(); i++) {
 %>
 		<tr>
+		asd
 			<td><%=list.get(i).getId() %></td>
 			<td><%=list.get(i).getName() %></td>
 			<td><%=list.get(i).getAge() %></td>
