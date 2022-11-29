@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
@@ -7,6 +8,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+table {
+	text-align: center;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -35,14 +42,17 @@
 	}
 </script>
 <body>
-	<h1>회원 목록 조회</h1>
+	<h1>직원 목록 조회</h1>
 	<form action="" method="post" name="form">
 	<input type="hidden" id="hiddenId" name="id" />
-	<table border="1" width="800">
+	<table border="1" width="1000">
 		<tr bgcolor="lightgrey">
-			<td width="300">회원번호</td>
+			<td>ID</td>
 			<td>이름</td>
-			<td>나이</td>
+			<td>주소</td>
+			<td>전화번호</td>
+			<td>이메일</td>
+			<td>부서</td>
 			<td>삭제</td>
 			<td>수정</td>
 		</tr>
@@ -51,17 +61,20 @@
 %>
 		<tr>
 		
-			<td><%=list.get(i).getId() %></td>
+			<td><%=list.get(i).getMemberId() %></td>
 			<td><%=list.get(i).getName() %></td>
-			<td><%=list.get(i).getAge() %></td>
-			<td><a href="javascript:goAction('delete', '<%=list.get(i).getId() %>')">삭제</a></td>
-			<td><a href="javascript:goAction('findOne', '<%=list.get(i).getId() %>')">수정</a></td>
+			<td><%=list.get(i).getAdress() %></td>
+			<td><%=list.get(i).getPno() %></td>
+			<td><%=list.get(i).getEmail() %></td>
+			<td><%=list.get(i).getDept() %></td>
+			<td><a href="javascript:goAction('delete', '<%=list.get(i).getMemberId() %>')">삭제</a></td>
+			<td><a href="javascript:goAction('findOne', '<%=list.get(i).getMemberId() %>')">수정</a></td>
 		</tr>
 <%
 		}
 %>
 	</table><br>
 	</form>
-	<a href="insertForm.jsp">document 추가</a>
+	<a href="insertForm.jsp">직원 정보 추가</a>
 </body>
 </html>
