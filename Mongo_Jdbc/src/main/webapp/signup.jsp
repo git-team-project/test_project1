@@ -28,7 +28,7 @@
 	boolean result = dao.insert(dto);
 	
 	if(result) {
-	   	response.sendRedirect("memberlist.jsp");
+	   	response.sendRedirect("index.jsp");
 	} else {
 	   	request.getRequestDispatcher("index.jsp").forward(request, response);
 		out.print("<script>alert('회원 등록 실패하였습니다.');</script>");

@@ -75,5 +75,6 @@ table {
 	</table><br>
 	</form>
 	<a href="insertForm.jsp">직원 정보 추가</a>
+
 </body>
 </html>

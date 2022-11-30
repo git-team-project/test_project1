@@ -6,9 +6,6 @@ public class People {
 	private String pw;
 	private String address;
 	private String name;
-	private String memberId;
-	private String pw;
-	private String address;
 	private String pno;
 	private String email;
 	private String dept;
