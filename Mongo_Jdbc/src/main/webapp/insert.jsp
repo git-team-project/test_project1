@@ -19,17 +19,17 @@
 	String name = request.getParameter("name");
 	int age = Integer.parseInt(request.getParameter("age"));
 	
-	People dto = new People(name, age);
+	//People dto = new People(name, age);
 	PeopleDao dao = new PeopleDao();
 	
-	boolean result = dao.insert(dto);
+	//boolean result = dao.insert(dto);
 	
-	if(result) {
+/* 	if(result) {
 	   	response.sendRedirect("find.jsp");
 	} else {
 	   	request.getRequestDispatcher("find.jsp").forward(request, response);
 		out.print("<script>alert('회원 등록 실패하였습니다.');</script>");
-	}
+	} */
 %>
 
 <body>
