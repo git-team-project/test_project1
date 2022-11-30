@@ -60,15 +60,14 @@ table {
 		for(int i=0; i<list.size(); i++) {
 %>
 		<tr>
-		
 			<td><%=list.get(i).getMemberId() %></td>
 			<td><%=list.get(i).getName() %></td>
-			<td><%=list.get(i).getAdress() %></td>
+			<td><%=list.get(i).getAddress() %></td>
 			<td><%=list.get(i).getPno() %></td>
 			<td><%=list.get(i).getEmail() %></td>
 			<td><%=list.get(i).getDept() %></td>
-			<td><a href="javascript:goAction('delete', '<%=list.get(i).getMemberId() %>')">삭제</a></td>
-			<td><a href="javascript:goAction('findOne', '<%=list.get(i).getMemberId() %>')">수정</a></td>
+			<td><a href="javascript:goAction('delete', '<%=list.get(i).getId() %>')">삭제</a></td>
+			<td><a href="javascript:goAction('findOne', '<%=list.get(i).getId() %>')">수정</a></td>
 		</tr>
 <%
 		}

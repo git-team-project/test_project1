@@ -91,7 +91,7 @@ public class PeopleDao {
 			
 			Document query = new Document().append("_id", dto.getId());
 	        Bson updates = Updates.combine(
-	                Updates.set("id", dto.getName()),
+	                Updates.set("id", dto.getMemberId()),
 	                Updates.set("address", dto.getAddress()),
 	                Updates.set("name", dto.getName()),
 	                Updates.set("dept", dto.getDept()),

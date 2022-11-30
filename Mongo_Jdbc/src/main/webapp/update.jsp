@@ -17,8 +17,8 @@
 	//Document deleteDocument = new Document("name","나이스");
 	//collection.deleteOne(deleteDocument);
 	
-	request.setCharacterEncoding("euc-kr");
-	response.setContentType("text/html; charset=EUC-KR");
+	request.setCharacterEncoding("UTF-8");
+	response.setContentType("text/html; charset=UTF-8");
 	
 	//String id = "6385ee624253e4c41b7b7a45";
 	String id = request.getParameter("id");
@@ -35,9 +35,9 @@
 	long result = dao.update(dto);
 	
 	if(result > 0) {
-	   	response.sendRedirect("find.jsp");
+	   	response.sendRedirect("memberlist.jsp");
 	} else {
-	   	request.getRequestDispatcher("find.jsp").forward(request, response);
+	   	request.getRequestDispatcher("memberlist.jsp").forward(request, response);
 		out.print("<script>alert('수정 실패하였습니다.');</script>");
 	}
 %>
