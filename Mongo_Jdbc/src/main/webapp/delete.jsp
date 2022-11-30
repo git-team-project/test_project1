@@ -20,9 +20,9 @@
 	long result = dao.delete(id);
 	//out.print("delete 성공");
 	if(result > 0) {
-	   	response.sendRedirect("find.jsp");
+	   	response.sendRedirect("index.jsp");
 	} else {
-	   	request.getRequestDispatcher("find.jsp").forward(request, response);
+	   	request.getRequestDispatcher("index.jsp").forward(request, response);
 		out.print("<script>alert('삭제 실패하였습니다.');</script>");
 	}
 %>

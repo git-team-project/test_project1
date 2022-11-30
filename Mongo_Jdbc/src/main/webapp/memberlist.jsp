@@ -53,7 +53,6 @@ table {
 			<td>전화번호</td>
 			<td>이메일</td>
 			<td>부서</td>
-			<td>삭제</td>
 			<td>수정</td>
 		</tr>
 <%
@@ -66,7 +65,6 @@ table {
 			<td><%=list.get(i).getPno() %></td>
 			<td><%=list.get(i).getEmail() %></td>
 			<td><%=list.get(i).getDept() %></td>
-			<td><a href="javascript:goAction('delete', '<%=list.get(i).getId() %>')">삭제</a></td>
 			<td><a href="javascript:goAction('findOne', '<%=list.get(i).getId() %>')">수정</a></td>
 		</tr>
 <%
@@ -74,7 +72,6 @@ table {
 %>
 	</table><br>
 	</form>
-	<a href="insertForm.jsp">직원 정보 추가</a>
 
 </body>
 </html>
