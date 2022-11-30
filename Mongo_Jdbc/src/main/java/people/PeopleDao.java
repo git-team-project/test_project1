@@ -50,7 +50,7 @@ public class PeopleDao {
 		
 		return dtoList;
 	}
-	
+
 	public long delete(String id) {
 		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
 			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
@@ -73,8 +73,12 @@ public class PeopleDao {
 	       
 			People dto = new People();
 			dto.setId((ObjectId) doc.get("_id"));
+			dto.setMemberId(doc.getString("id"));
+			dto.setAddress(doc.getString("address"));
 			dto.setName(doc.getString("name"));
-			dto.setAge(doc.getInteger("age"));
+			dto.setDept(doc.getString("dept"));
+			dto.setPno(doc.getString("pno"));
+			dto.setEmail(doc.getString("email"));
 			
 			return dto;
 		}
@@ -87,28 +91,16 @@ public class PeopleDao {
 			
 			Document query = new Document().append("_id", dto.getId());
 	        Bson updates = Updates.combine(
+	                Updates.set("id", dto.getName()),
+	                Updates.set("address", dto.getAddress()),
 	                Updates.set("name", dto.getName()),
-	                Updates.set("age", dto.getAge()));
+	                Updates.set("dept", dto.getDept()),
+	                Updates.set("pno", dto.getPno()),
+	                Updates.set("email", dto.getEmail()));
 			
 			UpdateResult result = collection.updateOne(query, updates);
         
 			return result.getModifiedCount();
-		}
-	}
-
-	public boolean insert(People dto) {
-		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
-			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
-			MongoCollection<Document> collection = database.getCollection("member");
-			
-			Document doc = new Document();
-			doc.append("_id", new ObjectId());
-			doc.append("name", dto.getName());
-			doc.append("age", dto.getAge());
-		
-			InsertOneResult result = collection.insertOne(doc);
-			
-			return result.wasAcknowledged();
 		}
 	}
 }
