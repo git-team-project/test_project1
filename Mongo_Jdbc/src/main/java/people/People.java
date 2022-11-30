@@ -1,17 +1,17 @@
 package people;
-
 import org.bson.types.ObjectId;
-
 public class People {
 	private ObjectId id;
 	private String memberId;
 	private String pw;
 	private String address;
 	private String name;
-	private String dept;
+	private String memberId;
+	private String pw;
+	private String address;
 	private String pno;
 	private String email;
-	
+	private String dept;
 	public People() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,7 +28,20 @@ public class People {
 		this.pno = pno;
 		this.email = email;
 	}
-
+	
+	public People(String id, String pw, String address, String name, String dept, String pno, String email) {
+		super();
+		this.memberId = id;
+		this.pw = pw;
+		this.address = address;
+		this.name = name;
+		this.dept = dept;
+		this.pno = pno;
+		this.email = email;
+	}
+	
+	
+	
 	public ObjectId getId() {
 		return id;
 	}
@@ -77,10 +90,10 @@ public class People {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	@Override
 	public String toString() {
 		return "People [id=" + id + ", memberId=" + memberId + ", pw=" + pw + ", address=" + address + ", name=" + name
 				+ ", dept=" + dept + ", pno=" + pno + ", email=" + email + "]";
 	}
-
 }

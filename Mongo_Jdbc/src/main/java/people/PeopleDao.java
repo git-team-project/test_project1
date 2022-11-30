@@ -1,6 +1,7 @@
 package people;
 
 import static com.mongodb.client.model.Filters.eq;
+
 import static com.mongodb.client.model.Sorts.ascending;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ import com.mongodb.client.result.InsertOneResult;
 import com.mongodb.client.result.UpdateResult;
 
 import util.MongoInfo;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class PeopleDao {
 	
@@ -102,5 +106,45 @@ public class PeopleDao {
         
 			return result.getModifiedCount();
 		}
+	}
+
+	public boolean insert(People dto) {
+		try(MongoClient mongoClient = MongoClients.create(MongoInfo.getUri())) {
+			MongoDatabase database = mongoClient.getDatabase(MongoInfo.getDataBase());
+			MongoCollection<Document> collection = database.getCollection("people");
+			String entyptPw = "";
+			try {
+				entyptPw = PeopleDao.entyptPassword(dto.getMemberId(), dto.getPw());
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			Document doc = new Document();
+			doc.append("_id", new ObjectId());
+			doc.append("memberId", dto.getMemberId());
+		
+			doc.append("pw", entyptPw);
+			doc.append("address", dto.getAdress());
+			doc.append("name", dto.getName());
+			doc.append("dept", dto.getDept());
+			doc.append("pno", dto.getPno());
+			doc.append("email", dto.getEmail());
+		
+			InsertOneResult result = collection.insertOne(doc);
+			
+			return result.wasAcknowledged();
+		}
+	}
+	
+	static String entyptPassword(String id,String pw) throws NoSuchAlgorithmException{
+	
+		
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+		// 평문+id 암호화
+		md.update(id.getBytes());
+		pw = String.format("%064x", new BigInteger(1, md.digest()));
+		System.out.println("raw+salt의 해시값 : "+ pw);
+		return pw;
 	}
 }
