@@ -25,13 +25,17 @@
 	People dto = dao.findOneById(id);
 %>
 <script type="text/javascript">
-let goUpdate = function() {
-	document.updateForm.submit();
+
+let goUpdateDelete = function(arg, id) {
+	let form = document.updateDeleteForm;
+	(arg === 'delete') ? form.action = 'delete.jsp' : form.action = 'update.jsp';
+	form.submit();
 }
+
 </script>
 <body>
 	<h1>회원 정보 수정</h1>
-	<form action="update.jsp" method="post" name="updateForm">
+	<form action="" method="post" name="updateDeleteForm">
 	<table border="1" width="800">
 		<tr bgcolor="lightgrey">
 			<td width="300">회원번호</td>
@@ -42,17 +46,6 @@ let goUpdate = function() {
 			<td>핸드폰 번호</td>
 			<td>이메일</td>
 		</tr>
-<%-- 
-		<tr>
-			<td><input type="text" name="id" value="<%=dto.getId() %>" readonly /></td>
-			<td><input type="text" name="name" value="<%=dto.getName() %>" /></td>
-			<td><input type="text" name="dept" value="<%=dto.getDept() %>" /></td>
-			<td><input type="text" name="address" value="<%=dto.getAddress() %>" /></td>
-			<td><input type="text" name="pno" value="<%=dto.getPno() %>" /></td>
-			<td><input type="text" name="email" value="<%=dto.getEmail() %>" /></td>
-			<td><a href="javascript:goUpdate()">수정</a></td>
-		</tr>
- --%>		
  		<tr>
 			<td><input type="text" name="id" value="<%=dto.getId() %>" readonly /></td>
 			<td><input type="text" name="memberId" value="<%=dto.getMemberId() %>" /></td>
@@ -73,7 +66,8 @@ let goUpdate = function() {
 	</table><br>
 	</form>
 </body>
-<input type="submit" value="수정" onclick="javascript:goUpdate()">
+<input type="submit" value="수정" onclick="javascript:goUpdateDelete('update')">
+<input type="button" value="탈퇴" onclick="javascript:goUpdateDelete('delete', '<%=dto.getId() %>')">
 <br><br>
-<a href="find.jsp">회원 목록 조회</a>
+<a href="memberlist.jsp">회원 목록 조회</a>
 </html>
