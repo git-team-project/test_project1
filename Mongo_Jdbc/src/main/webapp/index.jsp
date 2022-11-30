@@ -17,7 +17,7 @@
 	아이디 : <input type="text" name = "memberId" value = ""/>
 	비밀번호 : <input type="password" name = "pw" value = ""/><br/><br/>
 	<input type="submit" value = "로그인"/>
-	<button type="button" onclick="location.href='membersignup.jsp'">회원가입</button>
+	<button type="button" onclick="location.href='membersignupForm.jsp'">회원가입</button>
 	</form>
 	
 </body>
